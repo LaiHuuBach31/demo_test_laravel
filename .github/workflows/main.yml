@@ -17,12 +17,14 @@ jobs:
         port: 22
         script: |
           cd /home/bachlai/demo_test_laravel
+
           git fetch origin
           git checkout production
-          git pull
-          docker build -t laravel-app .
-          docker stop laravel-app || true
-          docker rm laravel-app || true
-          docker run -d --name laravel-app -p 81:80 laravel-app
-            
+          git pull origin production
+
+          echo "📦 Rebuild Docker containers"
+          docker compose down --remove-orphans
+          docker compose build --no-cache
+          docker compose up -d
+          echo "🚀 Deployment completed successfully!"
           
