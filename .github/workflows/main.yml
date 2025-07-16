@@ -16,7 +16,8 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-          cd /home/bachlai/demo_test_laravel
+          echo "🔐 Đăng nhập SSH thành công"
+          cd /home/bachlai/demo_test_laravel || { echo "❌ Không tìm thấy thư mục project"; exit 1; }
 
           git fetch origin
           git checkout production
