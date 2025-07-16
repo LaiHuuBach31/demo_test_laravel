@@ -1,0 +1,28 @@
+name: Demo Deployment
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        script: |
+          cd /home/bachlai/demo_test_laravel
+          git fetch origin
+          git checkout production
+          git pull
+          docker build -t laravel-app .
+          docker stop laravel-app || true
+          docker rm laravel-app || true
+          docker run -d --name laravel-app -p 81:80 laravel-app
+            
+          
