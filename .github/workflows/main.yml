@@ -1,0 +1,30 @@
+name: Demo Deployment
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        script: |
+          cd /home/bachlai/demo_test_laravel
+
+          git fetch origin
+          git checkout production
+          git pull origin production
+
+          echo "📦 Rebuild Docker containers"
+          docker compose down --remove-orphans
+          docker compose build --no-cache
+          docker compose up -d
+          echo "🚀 Deployment completed successfully!"
+          
