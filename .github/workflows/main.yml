@@ -19,6 +19,7 @@ jobs:
           echo "🔐 Đăng nhập SSH thành công"
           cd demo_test_laravel || { echo "❌ Không tìm thấy thư mục project"; exit 1; }
 
+          echo "git"
           git fetch origin
           git checkout production
           git pull origin production
