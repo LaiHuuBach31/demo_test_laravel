@@ -11,8 +11,8 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-success">
-        <div class="container-fluid">
-            <h1 class="px-5">My Website</h1>
+        <div class="container-fluid text-white">
+            <h3 class="px-5">My Website</h3>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
