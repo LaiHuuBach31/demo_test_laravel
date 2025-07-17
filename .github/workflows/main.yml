@@ -21,6 +21,7 @@ jobs:
 
           echo "git"
           git fetch origin
+          sdkfsdlkfsdkjf
           git checkout production
           git pull origin production
 
