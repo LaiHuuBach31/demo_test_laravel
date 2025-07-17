@@ -21,6 +21,7 @@ jobs:
 
           echo "git"
           git fetch origin
+          git reset --hard origin/production
           git checkout production
           git pull origin production
 
